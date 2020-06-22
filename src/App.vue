@@ -10,6 +10,7 @@
 import { Fragment } from 'vue-fragment';
 import Header from '@/components/Header.vue';
 import Footer from '@/components/Footer.vue';
+import { CLIENT_ID, CLIENT_SECRET } from './constants/keys';
 
 export default {
   name: 'App',
@@ -17,12 +18,16 @@ export default {
     Header,
     Fragment,
     Footer,
+  },
+  mounted() {
+    console.log(`%c▷ CLIENT ID: ${CLIENT_ID}`, 'color: teal;');
+    console.log(`%c▷ CLIENT SECRET: ${CLIENT_SECRET}`, 'color: teal;');
   }
 };
 </script>
 
 <style lang="scss">
-@import url('https://raw.githubusercontent.com/necolas/normalize.css/master/normalize.css');
+@import './styles/normalize.css';
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600&display=swap');
 body {
   margin: 0;

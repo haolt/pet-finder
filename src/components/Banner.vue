@@ -54,6 +54,7 @@ export default {
     color: #fff;
     font-weight: 600;
     text-transform: uppercase;
+    cursor: pointer;
   }
 }
 </style>

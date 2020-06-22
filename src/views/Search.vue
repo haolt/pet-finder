@@ -5,7 +5,9 @@
       <div class="search__filter">
         <SearchFilter />
       </div>
-      <div class="search__result">Result</div>
+      <div class="search__result">
+        <SearchResult />
+      </div>
     </div>
   </div>
 </template>
@@ -13,12 +15,14 @@
 <script>
 import Statistic from '@/components/Statistic.vue';
 import SearchFilter from '@/components/SearchFilter.vue';
+import SearchResult from '@/components/SearchResult.vue';
 
 export default {
   name: 'Search',
   components: {
     Statistic,
     SearchFilter,
+    SearchResult,
   }
 }
 </script>
@@ -33,6 +37,7 @@ export default {
   }
   &__result {
     flex: 3;
+    padding-left: 0.5em;
   }
 }
 </style>

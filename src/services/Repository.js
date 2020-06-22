@@ -1,0 +1,10 @@
+import axios from 'axios';
+
+const baseDomain = 'https://api.petfinder.com';
+const baseURL = `${baseDomain}/v2`;
+
+export default axios.create({
+  baseURL,
+  // Incase that you need a token
+  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJtV1Z0V2pmaWRBUXh6R09RUTc0RGdFQ2VEZnZMOGYzN0hOZXJpVk13cUZlZ1JPZkJIMiIsImp0aSI6ImM4Y2JkN2UyZmY1MTUzMjE3M2VmYmJlOGNhYTgxMWZiZDYwYTI1ZTExODhlMjdiOWM2YWFmMGZjOGFlMmY0MGU4ZDFlMTc0NzQ2ZTJjYzhkIiwiaWF0IjoxNTkyODA4OTQ1LCJuYmYiOjE1OTI4MDg5NDUsImV4cCI6MTU5MjgxMjU0NSwic3ViIjoiIiwic2NvcGVzIjpbXX0.DXMibF0oPVcvy7m-nTtvaXMaIydNOg09tehmm-U-c6uTVukk577IjtPgOxySd7oDSrZ5Q44kMagVogJyGLLWJG1-_xMCkh01sA85plBr9mHAzq0zVWy4tSYI7VZ9hge8PWXpus3QNiZKncsy7ddqAwqImwGHKXF18BDMioY0fwXvE3HsPGtcyHvrYHtujcU6dfc3JsORSWm5-silR4m6y2u2qYutidCOw8j1kfzMvv1YLh5eFyvB315NsugUGcEnbI-32R2Ll806_8FqbfL4vxjDOlojLYyN-48qtz-gYoKYlT7rWVkUaY4BmkjO4voN-8MeL5Cg4qlLzWrrbTS62w' }
+});

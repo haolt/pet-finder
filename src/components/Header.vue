@@ -14,7 +14,7 @@
         <router-link class="nav__item" to="/organizations">Organizations</router-link>
       </nav>
     </div>
-    <button class="login-btn" @click="openModal">Login</button>
+    <button v-if="!isLogin" class="login-btn" @click="openModal">Login</button>
   </header>
 </template>
 
@@ -24,6 +24,11 @@ import Login from "./Login.vue";
 export default {
   name: 'Header',
   components: { },
+  computed: {
+    isLogin () {
+      return this.$store.state.isLogin;
+    }
+  },
   methods: {
     openModal() {
       const options = {};
@@ -37,7 +42,6 @@ export default {
       };
 
       this.$modal.show(Login, options, style, events);
-      this.$modal.hide(Login, options, style, events);
     }
   }
 }

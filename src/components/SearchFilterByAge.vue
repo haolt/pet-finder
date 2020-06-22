@@ -1,5 +1,5 @@
 <template>
-  <fragment class="container">
+  <Fragment class="container">
     <div class="item">
       <input type="checkbox" id="allAge" name="all" value="">
       <label for="allAge">All</label>
@@ -20,13 +20,16 @@
       <input type="checkbox" id="senior" name="senior" value="senior">
       <label for="senior">Senior</label>
     </div>
-  </fragment>
+  </Fragment>
 </template>
 
 <script>
+import { Fragment } from 'vue-fragment';
+
 export default {
   name: 'SearchFilterByAge',
   components: {
+    Fragment,
   },
 }
 </script>

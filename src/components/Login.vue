@@ -2,22 +2,40 @@
   <div class="login-frm">
     <h3 class="login-frm__title">Login</h3>
     <div class="login-frm__group">
-      <input class="login-frm__field" name="clientID" type="text">
+      <input class="login-frm__field" name="clientID" type="text" v-model="clientID" />
       <label class="login-frm__label">Client ID</label>
     </div>
     <div class="login-frm__group">
-      <input class="login-frm__field" name="clientID" type="text">
+      <input class="login-frm__field" name="clientSecret" type="text" v-model="clientSecret" />
       <label class="login-frm__label">Client Secret</label>
     </div>
-    <button class="login-frm__btn">Login</button>
-    <small>Notes: Get login information at Console Tab </small>
+    <button class="login-frm__btn" @click="doLogin()">Login</button>
+    <small>Notes: Get login information at <b>Console Tab</b></small>
   </div>
 </template>
 
 <script>
+import RepositoryFactory from '../services/RepositoryFactory';
+import CookieService from '../services/cookie.service';
+const AuthRequest = RepositoryFactory.get('authentication'); 
+
 export default {
   name: 'Login',
-  components: { }
+  components: { },
+  data() {
+    return {
+      clientID: 'mWVtWjfidAQxzGOQQ74DgECeDfvL8f37HNeriVMwqFegROfBH2',
+      clientSecret: 'JTVyXAkxVejhoVIvJdGfQO5G7KhSPdgXdE8Nsna2',
+    }
+  },
+  methods: {
+    async doLogin() {
+      const { data: { access_token, expires_in }} = await AuthRequest.doAuthenticate(this.clientID, this.clientSecret);
+      CookieService.setCookie('pf-token', access_token, expires_in);
+      alert('Login successfully !!!');
+      this.$store.commit('changeIsLogin');
+    }
+  }
 }
 </script>
 

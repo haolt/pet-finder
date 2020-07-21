@@ -1,24 +1,12 @@
 <template>
   <Fragment class="container">
     <div class="item">
-      <input type="checkbox" id="allAge" name="all" value="">
+      <input type="checkbox" id="allAge" name="all" :checked="checkedAge.length === ageRanges.length" @change="onClickCheckAllBtn"/>
       <label for="allAge">All</label>
     </div>
-    <div class="item">
-      <input type="checkbox" id="baby" name="baby" value="baby">
-      <label for="baby">Baby</label>
-    </div>
-    <div class="item">
-      <input type="checkbox" id="young" name="young" value="young">
-      <label for="young">Young</label>
-    </div>
-    <div class="item">
-      <input type="checkbox" id="adult" name="adult" value="adult">
-      <label for="adult">Adult</label>
-    </div>
-    <div class="item">
-      <input type="checkbox" id="senior" name="senior" value="senior">
-      <label for="senior">Senior</label>
+    <div class="item" v-for="age in ageRanges" :key="age.id">
+      <input type="checkbox" :id="age.id" :value="age.name" :checked="age.isChecked" v-model="checkedAge" @change="onChangeCheckBox"/>
+      <label :for="age.id">{{ age.name }}</label>
     </div>
   </Fragment>
 </template>
@@ -30,6 +18,29 @@ export default {
   name: 'SearchFilterByAge',
   components: {
     Fragment,
+  },
+  data() {
+    return {
+      isCheckAll: true,
+      ageRanges: [
+        { id: 1, name: 'baby', isChecked: true },
+        { id: 2, name: 'young', isChecked: false },
+        { id: 3, name: 'adult', isChecked: false },
+        { id: 4, name: 'senior', isChecked: true },
+      ],
+      checkedAge: [],
+    };
+  },
+  methods: {
+    onClickCheckAllBtn() {
+      const isCheckAll = this.checkedAge.length === this.ageRanges.length;
+      this.checkedAge = isCheckAll ? [] : this.ageRanges.map(age => age.name);
+      this.ageRanges.forEach(age => age.isChecked = isCheckAll);
+      this.onChangeCheckBox();
+    },
+    onChangeCheckBox() {
+      this.$router.replace({path: 'search', query: {...this.$route.query, age: this.checkedAge.length > 0 ? this.checkedAge.join(',') : undefined }});
+    }
   },
 }
 </script>

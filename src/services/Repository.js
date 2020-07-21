@@ -1,10 +1,20 @@
 import axios from 'axios';
+// import cookieService from './cookie.service';
 
 const baseDomain = 'https://api.petfinder.com';
 const baseURL = `${baseDomain}/v2`;
 
+// const token = cookieService.getCookie('pf-token');
+const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJtV1Z0V2pmaWRBUXh6R09RUTc0RGdFQ2VEZnZMOGYzN0hOZXJpVk13cUZlZ1JPZkJIMiIsImp0aSI6IjIyZDFiOWFmYzE4ZDQ4YjY4YjcwM2FlYmM0M2FiMDM3ODQyZTVjZTgxZDZmNWM2NmVhNmE1MWUxZmE1YzM2Njg5NTZjY2Y5ZDUxYTMwNWU4IiwiaWF0IjoxNTkyODg2NjM4LCJuYmYiOjE1OTI4ODY2MzgsImV4cCI6MTU5Mjg5MDIzOCwic3ViIjoiIiwic2NvcGVzIjpbXX0.q2IXJis2kF4h6Q80zrniHS4z0REwVrmmhemaiPA1p2B7K_agKyj4r88923C-2SR1dxvpFX83RttE6abXoYVgUjS03oFtvwqmTax0HDSfsCMJRclr9qpFMSWsRc1c9JHMHHRJtAs0cRdzrAXbT2oV5TM1JtJ4a64qMXSiTJFYQwm2PCFblUPc0ChInsEXbbSAIWPpJR6kOHfHFeQqoQl_ZmhuLLtgNe9pOKATQuxxekrldpFfEmQQFjcg7FVUbKHWhexOPUpZZey_ACtepzIoRi80P1mBWmPPH5uj_5UqbJlW8if_Z6qSUQQgE8lAeXSMpKYjimP2igM8B7tV9YRCJw';
+
 export default axios.create({
   baseURL,
-  // Incase that you need a token
-  headers: { Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJtV1Z0V2pmaWRBUXh6R09RUTc0RGdFQ2VEZnZMOGYzN0hOZXJpVk13cUZlZ1JPZkJIMiIsImp0aSI6ImM4Y2JkN2UyZmY1MTUzMjE3M2VmYmJlOGNhYTgxMWZiZDYwYTI1ZTExODhlMjdiOWM2YWFmMGZjOGFlMmY0MGU4ZDFlMTc0NzQ2ZTJjYzhkIiwiaWF0IjoxNTkyODA4OTQ1LCJuYmYiOjE1OTI4MDg5NDUsImV4cCI6MTU5MjgxMjU0NSwic3ViIjoiIiwic2NvcGVzIjpbXX0.DXMibF0oPVcvy7m-nTtvaXMaIydNOg09tehmm-U-c6uTVukk577IjtPgOxySd7oDSrZ5Q44kMagVogJyGLLWJG1-_xMCkh01sA85plBr9mHAzq0zVWy4tSYI7VZ9hge8PWXpus3QNiZKncsy7ddqAwqImwGHKXF18BDMioY0fwXvE3HsPGtcyHvrYHtujcU6dfc3JsORSWm5-silR4m6y2u2qYutidCOw8j1kfzMvv1YLh5eFyvB315NsugUGcEnbI-32R2Ll806_8FqbfL4vxjDOlojLYyN-48qtz-gYoKYlT7rWVkUaY4BmkjO4voN-8MeL5Cg4qlLzWrrbTS62w' }
+  mode: 'cors', // no-cors, *cors, same-origin
+  cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+  credentials: 'same-origin', // include, *same-origin, omit
+  headers: {
+    'Authorization': `Bearer ${token}`,
+    'Access-Control-Allow-Origin': '*',
+    'credentials': true,
+  }
 });

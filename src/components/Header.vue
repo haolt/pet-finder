@@ -12,14 +12,17 @@
       <nav class="nav">
         <router-link class="nav__item" to="/animals">Animals</router-link>
         <router-link class="nav__item" to="/organizations">Organizations</router-link>
+        <router-link class="nav__item" to="/warning">Warning</router-link>
       </nav>
     </div>
     <button v-if="!isLogin" class="login-btn" @click="openModal">Login</button>
+    <button v-else class="login-btn" @click="doLogout">Logout</button>
   </header>
 </template>
 
 <script>
 import Login from "./Login.vue";
+import CookieService from '../services/cookie.service';
 
 export default {
   name: 'Header',
@@ -30,6 +33,10 @@ export default {
     }
   },
   methods: {
+    doLogout() {
+      CookieService.eraseCookie('pf-token');
+      this.$store.commit('changeIsLogin');
+    },
     openModal() {
       const options = {};
       const style = {
@@ -81,6 +88,10 @@ export default {
 
         &:hover {
           color: #6504B5;
+        }
+
+        &:last-child {
+          color: #fff;
         }
       }
     }

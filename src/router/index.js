@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
+// import store from '../store';
 
 Vue.use(VueRouter);
 
@@ -15,6 +16,11 @@ Vue.use(VueRouter);
     name: 'Search',
     component: () => import('../views/Search.vue'),
   },
+  {
+    path: '/warning',
+    name: 'Warning',
+    component: () => import('../views/Warning.vue'),
+  },
 ];
 
 const router = new VueRouter({
@@ -22,5 +28,16 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
+
+// router.beforeEach((to, from, next) => {
+
+//   if (to.path === '/search') {
+//     if (!store.state.isLogin) {
+//       next('/warning');
+//     }
+//   }
+
+//   next();
+// });
 
 export default router;

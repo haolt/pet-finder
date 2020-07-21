@@ -17,6 +17,7 @@
 <script>
 import RepositoryFactory from '../services/RepositoryFactory';
 import CookieService from '../services/cookie.service';
+// import router from '../router';
 const AuthRequest = RepositoryFactory.get('authentication'); 
 
 export default {
@@ -34,6 +35,7 @@ export default {
       CookieService.setCookie('pf-token', access_token, expires_in);
       alert('Login successfully !!!');
       this.$store.commit('changeIsLogin');
+      // router.push('/search');
     }
   }
 }
